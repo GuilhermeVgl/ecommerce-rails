@@ -89,19 +89,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_043232) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  create_table "stocks", force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.integer "amount"
-    t.string "size"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_stocks_on_product_id"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
   add_foreign_key "products", "categories"
-  add_foreign_key "stocks", "products"
 end

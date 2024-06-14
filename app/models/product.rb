@@ -4,7 +4,6 @@ class Product < ApplicationRecord
     attachable.variant :medium, resize_to_limit: [250, 250]
   end
 
-  has_many :stock
   has_many :order_products
   belongs_to :category
 end

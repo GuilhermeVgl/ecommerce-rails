@@ -49,7 +49,7 @@
                     <%= p.description %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-fray-800">
-                    R$<%= (p.price).to_s %>
+                    R$<%= (p.price / 100).to_s %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-fray-800">
                     <%= p.category_id %>

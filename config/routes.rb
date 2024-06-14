@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :orders
-    resources :products do
-      resources :stocks
-    end
+    resources :products
     resources :categories
   end
   devise_for :admins
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -18,12 +17,17 @@ Rails.application.routes.draw do
 
   authenticated :admin_user do
     root to: "admin#index", as: :admin_root
-  end
+    end
 
-  resources :categories, only: [:show]
-  resources :products, only: [:show]
+    resources :categories, only: [:show]
+    resources :products, only: [:show]
 
-  get "admin" => "admin#index"
-  get "cart" => "carts#show"
+    get "admin" => "admin#index"
+    get "cart" => "carts#show"
+    post "checkout" => "checkouts#create"
+    get "success" => "checkouts#success"
+    get "cancel" => "checkouts#cancel"
+    post "webhooks" => "webhooks#stripe"
 
+  # match '*path', to: 'application#not_found', via: :all
 end
