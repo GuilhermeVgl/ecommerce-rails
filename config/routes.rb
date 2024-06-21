@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   authenticated :admin_user do
     root to: "admin#index", as: :admin_root
-    end
+  end
 
     resources :categories, only: [:show]
     resources :products, only: [:show]
@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     get "success" => "checkouts#success"
     get "cancel" => "checkouts#cancel"
     post "webhooks" => "webhooks#stripe"
+
+    resource :cart, only: :show
+    post 'checkout', to: 'carts#checkout'
 
   # match '*path', to: 'application#not_found', via: :all
 end

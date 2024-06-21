@@ -4,7 +4,8 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static values = { size: String, product: Object };
 
-  addToCart() {
+  addToCart(event) {
+    event.preventDefault(); // Impede o redirecionamento
     console.log("product: ", this.productValue);
     const cart = localStorage.getItem("cart");
     if (cart) {
@@ -37,6 +38,7 @@ export default class extends Controller {
       });
       localStorage.setItem("cart", JSON.stringify(cartArray));
     }
+    alert(`${this.productValue.name} foi adicionado ao carrinho.`);
   }
 
   selectSize(e) {
