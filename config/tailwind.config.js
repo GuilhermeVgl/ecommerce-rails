@@ -9,12 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        OrgonBold: ["Orgon-Bold", "sans-serif"],
-        OrgonRegular: ["Orgon-Regular", "sans-serif"],
-      },
-      color: {
-        primary: "#e8590c",
+      colors: {
+        'purple': "#4a087b",
+        'dark-blue': "#3d45a7",
+        'blue': "#3182d3",
+        'light-blue': "#25bfff"
       },
     },
   },

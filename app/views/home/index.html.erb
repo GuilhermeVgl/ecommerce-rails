@@ -2,7 +2,7 @@
     <div class="flex">
         <!-- Sidebar for Categories -->
         <div class="w-1/4 p-4">
-            <h2 class="text-xl font-bold mb-4 primary-orange">All Categories</h2>
+            <h2 class="text-xl font-bold mb-4 text-teste1">All Categories</h2>
             <ul class="list-none">
                 <% @main_categories.each do |category| %>
                 <li class="mb-2">
@@ -17,7 +17,7 @@
             <div class="bg-white my-2 p-4 rounded">
               <%= form_tag('#') do %>
                 <div class="input-group w-full justify-center flex text-center items-center align-center">
-                    <input class="form-control rounded w-full text-white" type="text" id="address" placeholder="Enter your address/postcode to order">
+                    <input class="form-control rounded w-full text-black" type="text" id="address" placeholder="Enter your address/postcode to order">
                 </div>
               <% end %>
             </div>
@@ -30,8 +30,8 @@
 
                 <div class="mx-4">
                     <p class="mb-4 font-bold" style="color: green;">We are open</p>
-                    <p><i class="fas fa-clock text-gray-300" style="margin-right: 6px;"></i>24 hours, 7 days.</p>
-                    <p class="text-gray-200">Delivery and pick-up available</p>
+                    <p><i class="fas fa-clock text-gray-800" style="margin-right: 6px;"></i>24 hours, 7 days.</p>
+                    <p class="text-gray-400">Delivery and pick-up available</p>
                 </div>
             </div>
 
@@ -86,13 +86,12 @@
         <div class="w-1/4 mx-4 h-1/4">
             <div class="bg-white p-4 rounded my-2">
                 <h2 class="text-xl font-bold mb-4">Cart</h2>
-                <div id="cart-items" data-controller="cart"></div>
-            </div>
-
-            <div class="bg-white p-4 rounded my-2">
-                <div id="total" class="mt-4"></div>
-                <button data-action="cart#checkout" class="w-full mt-4 primary-orange-bg text-white py-2 px-4 rounded">Checkout</button>
-            </div>
+                <div id="cart-items" data-controller="cart">
+                    <div id="total" class="mt-4"></div>
+                        <button data-action="cart#checkout" class="w-full mt-4 primary-orange-bg text-white py-2 px-4 rounded">Checkout</button>
+                    </div>
+                </div>
+            <div id="errorContainer"></div>
 
         </div>
     </div>
