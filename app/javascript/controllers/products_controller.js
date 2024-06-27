@@ -1,49 +1,38 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="products"
 export default class extends Controller {
-  static values = { size: String, product: Object };
+  static values = { product: Object }
 
-  addToCart(event) {
-    event.preventDefault(); // Impede o redirecionamento
-    console.log("product: ", this.productValue);
-    const cart = localStorage.getItem("cart");
+  addToCart() {
+    const cart = localStorage.getItem("cart")
     if (cart) {
-      const cartArray = JSON.parse(cart);
-      const foundIndex = cartArray.findIndex(
-        (item) =>
-          item.id === this.productValue.id && item.size === this.sizeValue,
-      );
+      const cartArray = JSON.parse(cart)
+      const foundIndex = cartArray.findIndex(item => item.id === this.productValue.id)
       if (foundIndex >= 0) {
-        cartArray[foundIndex].quantity =
-          parseInt(cartArray[foundIndex].quantity) + 1;
+        cartArray[foundIndex].quantity = parseInt(cartArray[foundIndex].quantity) + 1
       } else {
         cartArray.push({
           id: this.productValue.id,
           name: this.productValue.name,
           price: this.productValue.price,
-          size: this.sizeValue,
-          quantity: 1,
-        });
+          quantity: 1
+        })
       }
-      localStorage.setItem("cart", JSON.stringify(cartArray));
+      localStorage.setItem("cart", JSON.stringify(cartArray))
+      window.alert("Item adicionado com sucesso");
+      window.location.reload();
     } else {
-      const cartArray = [];
+      const cartArray = []
       cartArray.push({
         id: this.productValue.id,
         name: this.productValue.name,
         price: this.productValue.price,
-        size: this.sizeValue,
-        quantity: 1,
-      });
+        quantity: 1
+      })
       localStorage.setItem("cart", JSON.stringify(cartArray));
+      window.alert("Item adicionado com sucesso");
+      window.location.reload();
     }
-    alert(`${this.productValue.name} foi adicionado ao carrinho.`);
-  }
-
-  selectSize(e) {
-    this.sizeValue = e.target.value;
-    const selectedSizeEl = document.getElementById("selected-size");
-    selectedSizeEl.innerText = `Selected Size: ${this.sizeValue}`;
   }
 }
